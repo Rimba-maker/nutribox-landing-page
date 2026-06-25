@@ -44,7 +44,7 @@ export default function SampleMenu() {
     <section
       id="sample-menu"
       ref={ref}
-      className="py-20 md:py-28"
+      className="py-12 md:py-28"
       style={{ backgroundColor: "#ffffff" }}
     >
       <div className="max-w-[1280px] mx-auto px-6">
@@ -110,7 +110,7 @@ export default function SampleMenu() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
           >
             {day.items.map((item, i) => (
               <motion.div
@@ -127,7 +127,7 @@ export default function SampleMenu() {
                 }}
               >
                 {/* Food photo */}
-                <div className="relative overflow-hidden" style={{ height: "160px" }}>
+                <div className="relative overflow-hidden h-[120px] sm:h-[160px]">
                   <img
                     src={item.image}
                     alt={item.name}

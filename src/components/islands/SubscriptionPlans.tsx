@@ -76,6 +76,24 @@ const plans = [
       "WhatsApp support nutrisi",
     ],
   },
+  {
+    id: "annual",
+    emoji: "👑",
+    name: "Tahunan",
+    tagline: "Komitmen terbaik, harga terbaik",
+    price: 29900000,
+    unit: "per tahun",
+    perDay: 113000,
+    savings: "Hemat 20% vs bulanan",
+    badge: null,
+    perks: [
+      "264 hari kerja, 3x makan/hari",
+      "Semua benefit Premium Plus",
+      "2 bulan gratis vs bayar bulanan",
+      "Dedicated nutrition consultant",
+      "Annual meal planning report",
+    ],
+  },
 ];
 
 const addons = [
@@ -101,7 +119,7 @@ export default function SubscriptionPlans() {
     <section
       id="subscription-plans"
       ref={ref}
-      className="py-20 md:py-28"
+      className="py-12 md:py-28"
       style={{ backgroundColor: "#f2f0eb" }}
     >
       <div className="max-w-[1280px] mx-auto px-6">
@@ -170,15 +188,12 @@ export default function SubscriptionPlans() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Plan cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-          {plans.slice(0, 3).map((plan, i) => (
-            <PlanCard key={plan.id} plan={plan} index={i} visible={isInView} />
-          ))}
-        </div>
-        <div className="grid sm:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto mb-10">
-          {plans.slice(3).map((plan, i) => (
-            <PlanCard key={plan.id} plan={plan} index={i + 3} visible={isInView} />
+        {/* Plan cards — horizontal scroll on mobile, grid on md+ */}
+        <div className="flex items-stretch gap-4 overflow-x-auto pb-3 -mx-6 px-6 snap-x snap-mandatory md:mx-0 md:px-0 md:overflow-visible md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5 mb-10">
+          {plans.map((plan, i) => (
+            <div key={plan.id} className="shrink-0 w-72 md:w-auto snap-start md:h-auto">
+              <PlanCard plan={plan} index={i} visible={isInView} />
+            </div>
           ))}
         </div>
 
@@ -259,93 +274,87 @@ function PlanCard({ plan, index, visible }: { plan: (typeof plans)[0]; index: nu
       initial={{ opacity: 0, y: 28 }}
       animate={visible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.07 }}
-      whileHover={{ y: -5, boxShadow: isFeatured ? "0 20px 48px rgba(203,162,88,0.2)" : "0 12px 32px rgba(0,0,0,0.10)" }}
-      className="relative flex flex-col gap-4 p-6"
+      whileHover={{ y: -4 }}
+      className="flex flex-col h-full overflow-hidden"
       style={{
-        backgroundColor: "#ffffff",
-        borderRadius: "14px",
-        border: isFeatured ? "2px solid #cba258" : "1px solid #ebebeb",
+        borderRadius: "16px",
+        backgroundColor: isFeatured ? "#134e4a" : "#ffffff",
+        border: isFeatured ? "none" : "1px solid #ebebeb",
         boxShadow: isFeatured
-          ? "0 4px 24px rgba(203,162,88,0.15)"
-          : "0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24)",
-        transition: "box-shadow 0.25s ease",
+          ? "0 8px 32px rgba(19,78,74,0.28)"
+          : "0 0 0.5px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.08)",
       }}
     >
-      {/* Badge */}
-      {plan.badge && (
-        <motion.div
-          initial={{ scale: 0.7, opacity: 0 }}
-          animate={visible ? { scale: 1, opacity: 1 } : {}}
-          transition={{ type: "spring", stiffness: 400, damping: 20, delay: index * 0.07 + 0.3 }}
-          className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-bold rounded-full whitespace-nowrap"
-          style={{ backgroundColor: "#cba258", color: "#ffffff" }}
+      {/* Featured header band */}
+      {isFeatured && (
+        <div
+          className="flex items-center justify-between px-6 py-3"
+          style={{ backgroundColor: "rgba(62,207,142,0.18)" }}
         >
-          {plan.badge}
-        </motion.div>
+          <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6ee7b7" }}>
+            ⭐ Terlaris
+          </span>
+          <span
+            className="text-xs font-semibold px-2.5 py-1 rounded-full"
+            style={{ backgroundColor: "#3ecf8e", color: "#0e0f0c" }}
+          >
+            Hemat 17%
+          </span>
+        </div>
       )}
 
-      {/* Header */}
-      <div className="flex items-start gap-3 pt-2">
-        <span className="text-2xl">{plan.emoji}</span>
-        <div>
-          <h3 className="font-bold text-base leading-snug" style={{ color: "#222" }}>{plan.name}</h3>
-          <p className="text-xs mt-0.5" style={{ color: "#717171" }}>{plan.tagline}</p>
+      {/* Card body */}
+      <div className="flex flex-col flex-1 gap-5 p-6">
+        {/* Plan name + tagline */}
+        <div className="flex items-start gap-3">
+          <span className="text-2xl leading-none mt-0.5">{plan.emoji}</span>
+          <div>
+            <h3 className="font-bold text-base leading-snug" style={{ color: isFeatured ? "#ffffff" : "#222" }}>
+              {plan.name}
+            </h3>
+            <p className="text-xs mt-0.5" style={{ color: isFeatured ? "rgba(255,255,255,0.6)" : "#717171" }}>
+              {plan.tagline}
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Price */}
-      <div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={visible ? { opacity: 1 } : {}}
-          transition={{ delay: index * 0.07 + 0.2 }}
-          className="text-3xl font-black leading-none"
-          style={{ color: isFeatured ? "#cba258" : "#059669" }}
+        {/* Price */}
+        <div>
+          <p className="text-4xl font-black leading-none tabular-nums" style={{ color: isFeatured ? "#6ee7b7" : "#059669" }}>
+            {formatRp(plan.price)}
+          </p>
+          <p className="text-xs mt-1.5" style={{ color: isFeatured ? "rgba(255,255,255,0.5)" : "#717171" }}>
+            {plan.unit}
+            {plan.perDay && ` · Rp ${(plan.perDay / 1000).toFixed(0)}k/hari`}
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px" style={{ backgroundColor: isFeatured ? "rgba(255,255,255,0.1)" : "#f0f0f0" }} />
+
+        {/* Perks */}
+        <ul className="flex flex-col gap-2.5 flex-1">
+          {plan.perks.map((perk) => (
+            <li key={perk} className="flex items-start gap-2 text-sm leading-snug" style={{ color: isFeatured ? "rgba(255,255,255,0.82)" : "#444" }}>
+              <span className="mt-px shrink-0 font-bold text-xs" style={{ color: isFeatured ? "#6ee7b7" : "#3ecf8e" }}>✓</span>
+              {perk}
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <a
+          href="#subscribe-form"
+          className="inline-flex items-center justify-center h-11 text-sm font-semibold transition-transform duration-150 active:scale-95"
+          style={{
+            backgroundColor: isFeatured ? "#3ecf8e" : "rgba(62,207,142,0.1)",
+            color: isFeatured ? "#0e0f0c" : "#059669",
+            borderRadius: "50px",
+          }}
         >
-          {formatRp(plan.price)}
-        </motion.p>
-        <p className="text-xs mt-1" style={{ color: "#717171" }}>
-          {plan.unit}
-          {plan.perDay && ` · Rp ${(plan.perDay / 1000).toFixed(0)}k/hari`}
-        </p>
-        {plan.savings && (
-          <motion.span
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={visible ? { scale: 1, opacity: 1 } : {}}
-            transition={{ type: "spring", stiffness: 350, damping: 22, delay: index * 0.07 + 0.35 }}
-            className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mt-2"
-            style={{ backgroundColor: "rgba(62,207,142,0.1)", color: "#3ecf8e" }}
-          >
-            🎉 {plan.savings}
-          </motion.span>
-        )}
+          {isFeatured ? "Mulai Sekarang →" : "Pilih Paket Ini"}
+        </a>
       </div>
-
-      {/* Divider */}
-      <div className="h-px" style={{ backgroundColor: "#f0f0f0" }} />
-
-      {/* Perks */}
-      <ul className="flex flex-col gap-2 flex-1">
-        {plan.perks.map((perk) => (
-          <li key={perk} className="flex items-start gap-2 text-sm" style={{ color: "#444" }}>
-            <span className="mt-0.5 shrink-0" style={{ color: "#3ecf8e" }}>✓</span>
-            {perk}
-          </li>
-        ))}
-      </ul>
-
-      {/* CTA */}
-      <a
-        href="#subscribe-form"
-        className="mt-2 inline-flex items-center justify-center h-10 text-sm font-semibold transition-transform duration-150 active:scale-95"
-        style={{
-          backgroundColor: isFeatured ? "#cba258" : "#3ecf8e",
-          color: "#ffffff",
-          borderRadius: "50px",
-        }}
-      >
-        Pilih Paket Ini
-      </a>
     </motion.div>
   );
 }

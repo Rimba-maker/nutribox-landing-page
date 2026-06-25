@@ -11,6 +11,7 @@ const plans = [
   { id: "weekly-7", label: "Mingguan 7 Hari", price: "Rp 1.050k/minggu" },
   { id: "monthly", label: "Bulanan 22 Hari", price: "Rp 3,1 jt/bulan" },
   { id: "premium", label: "Premium Plus", price: "Rp 3,9 jt/bulan" },
+  { id: "annual", label: "Tahunan", price: "Rp 29,9 jt/tahun" },
 ];
 
 const slots = [
@@ -57,7 +58,7 @@ export default function SubscribeForm() {
 
   if (submitted) {
     return (
-      <section id="subscribe-form" className="py-20 md:py-28" style={{ backgroundColor: "#f2f0eb" }}>
+      <section id="subscribe-form" className="py-12 md:py-28" style={{ backgroundColor: "#f2f0eb" }}>
         <div className="max-w-[560px] mx-auto px-6 text-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -83,7 +84,7 @@ export default function SubscribeForm() {
   }
 
   return (
-    <section id="subscribe-form" className="py-20 md:py-28" style={{ backgroundColor: "#f2f0eb" }}>
+    <section id="subscribe-form" className="py-12 md:py-28" style={{ backgroundColor: "#f2f0eb" }}>
       <div className="max-w-[640px] mx-auto px-6">
 
         {/* Header */}

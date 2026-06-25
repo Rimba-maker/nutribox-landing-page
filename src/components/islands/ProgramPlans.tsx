@@ -116,15 +116,13 @@ export default function ProgramPlans() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const topRow = programs.slice(0, 3);
-  const bottomRow = programs.slice(3);
 
   return (
     <section
       id="program-plans"
       ref={ref}
       style={{ backgroundColor: "#f2f0eb" }}
-      className="py-20 md:py-28"
+      className="py-12 md:py-28"
     >
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Header */}
@@ -152,27 +150,16 @@ export default function ProgramPlans() {
           </p>
         </motion.div>
 
-        {/* Top row — 3 cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-          {topRow.map((program, i) => (
-            <ProgramCard
-              key={program.id}
-              program={program}
-              index={i}
-              visible={isInView}
-            />
-          ))}
-        </div>
-
-        {/* Bottom row — 2 cards centered */}
-        <div className="grid sm:grid-cols-2 gap-5 lg:w-2/3 lg:mx-auto">
-          {bottomRow.map((program, i) => (
-            <ProgramCard
-              key={program.id}
-              program={program}
-              index={i + 3}
-              visible={isInView}
-            />
+        {/* Cards — horizontal scroll on mobile, grid on md+ */}
+        <div className="flex gap-4 overflow-x-auto pb-3 -mx-6 px-6 snap-x snap-mandatory md:mx-0 md:px-0 md:overflow-visible md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
+          {programs.map((program, i) => (
+            <div key={program.id} className="shrink-0 w-72 md:w-auto snap-start">
+              <ProgramCard
+                program={program}
+                index={i}
+                visible={isInView}
+              />
+            </div>
           ))}
         </div>
 

@@ -7,7 +7,7 @@ export type Program =
 
 export type DeliverySlot = "pagi" | "siang" | "all-at-once";
 
-export type SubscriptionPlan = "trial" | "weekly-5" | "weekly-7" | "monthly" | "premium";
+export type SubscriptionPlan = "trial" | "weekly-5" | "weekly-7" | "monthly" | "premium" | "annual";
 
 export interface MenuItem {
   time: string;

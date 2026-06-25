@@ -59,7 +59,7 @@ export default function Hero() {
         style={{ backgroundColor: "#059669" }}
       />
 
-      <div className="relative max-w-[1280px] mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-[1280px] mx-auto px-6 py-12 md:py-28 grid md:grid-cols-2 gap-12 items-center">
 
         {/* Left — copy */}
         <motion.div
@@ -162,12 +162,12 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right — image */}
+        {/* Right — image (hidden on mobile) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-          className="relative"
+          className="relative hidden md:block"
         >
           {/* Image card */}
           <div

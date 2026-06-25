@@ -77,7 +77,7 @@ export default function WhyNutriBox() {
       id="why-nutribox"
       ref={ref}
       style={{ backgroundColor: "#f2f0eb" }}
-      className="py-20 md:py-28"
+      className="py-12 md:py-28"
     >
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Header */}
