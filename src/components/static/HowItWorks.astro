@@ -1,0 +1,135 @@
+﻿---
+// Section 7 — How It Works (static)
+const steps = [
+  {
+    number: "01",
+    icon: "🎯",
+    title: "Pilih Program & Durasi",
+    body: "Sesuaikan dengan goal dan budget. Bisa mulai dari 5 hari trial — tidak perlu langsung commit ke paket panjang.",
+    detail: "Trial mulai Rp 425k",
+  },
+  {
+    number: "02",
+    icon: "📦",
+    title: "Kami Siapkan & Kirim",
+    body: "Dimasak pagi hari menggunakan bahan segar, lalu dikirim ke alamatmu sesuai slot yang dipilih — pagi atau siang.",
+    detail: "Dikirim setiap hari",
+  },
+  {
+    number: "03",
+    icon: "🥗",
+    title: "Buka & Makan",
+    body: "Makananmu sudah siap. Tidak perlu masak, tidak perlu hitung kalori. Kalori dan makro sudah tertera di setiap box.",
+    detail: "Langsung makan",
+  },
+];
+---
+
+<section id="how-it-works" style="background-color: #ffffff;" class="py-20 md:py-28">
+  <div class="max-w-[1280px] mx-auto px-6">
+
+    <!-- Header -->
+    <div class="max-w-2xl mb-16">
+      <p
+        class="text-xs font-semibold uppercase tracking-widest mb-3"
+        style="color: #3ecf8e;"
+      >
+        Cara Kerja
+      </p>
+      <h2
+        class="text-3xl md:text-4xl font-bold leading-tight mb-4"
+        style="color: #222222;"
+      >
+        Semudah 3 Langkah.
+      </h2>
+      <p class="text-base leading-relaxed" style="color: #717171;">
+        Dari pilih program sampai makanan ada di tangan — semuanya kami urus.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative grid md:grid-cols-3 gap-8">
+
+      <!-- Connecting line — desktop only -->
+      <div
+        class="hidden md:block absolute top-10 left-[calc(16.67%+16px)] right-[calc(16.67%+16px)] h-px"
+        style="background: linear-gradient(to right, #dddddd 0%, #3ecf8e 50%, #dddddd 100%);"
+      ></div>
+
+      {steps.map((step, i) => (
+        <div class="relative flex flex-col gap-5">
+
+          <!-- Step badge -->
+          <div class="flex items-center gap-4">
+            <div
+              class="relative w-20 h-20 rounded-full flex items-center justify-center shrink-0 text-3xl z-10"
+              style="background-color: #f2f0eb; border: 3px solid #3ecf8e;"
+            >
+              {step.icon}
+              <!-- Number badge -->
+              <span
+                class="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                style="background-color: #3ecf8e; color: #0e0f0c;"
+              >
+                {i + 1}
+              </span>
+            </div>
+
+            <!-- Mobile connecting arrow (not desktop) -->
+            {i < steps.length - 1 && (
+              <div class="md:hidden flex-1 h-px" style="background-color: #dddddd;"></div>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div
+            class="flex flex-col gap-3 p-5 flex-1"
+            style="background-color: #f9f9f8; border-radius: 14px; border: 1px solid #ebebeb;"
+          >
+            <span
+              class="text-4xl font-black leading-none"
+              style="color: rgba(5,150,105,0.12);"
+            >
+              {step.number}
+            </span>
+            <h3 class="text-lg font-bold leading-snug" style="color: #222222;">
+              {step.title}
+            </h3>
+            <p class="text-sm leading-relaxed" style="color: #717171;">
+              {step.body}
+            </p>
+            <span
+              class="self-start text-xs font-semibold px-3 py-1 rounded-full mt-1"
+              style="background-color: rgba(62,207,142,0.08); color: #3ecf8e;"
+            >
+              ✓ {step.detail}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA strip -->
+    <div
+      class="mt-16 flex flex-col sm:flex-row items-center justify-between gap-5 px-8 py-6 rounded-2xl"
+      style="background-color: #f2f0eb; border: 1px solid #e0ded9;"
+    >
+      <div>
+        <p class="font-bold text-base" style="color: #222222;">
+          Siap coba? Mulai dengan trial 5 hari dulu.
+        </p>
+        <p class="text-sm mt-1" style="color: #717171;">
+          Cukup untuk merasakan bedanya. Tidak perlu commit panjang.
+        </p>
+      </div>
+      <a
+        href="#subscription-plans"
+        class="shrink-0 inline-flex items-center gap-2 px-6 h-11 text-sm font-semibold transition-transform duration-150 active:scale-95"
+        style="background-color: #3ecf8e; color: #0e0f0c; border-radius: 50px;"
+      >
+        Lihat Paket Trial →
+      </a>
+    </div>
+
+  </div>
+</section>

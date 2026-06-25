@@ -1,0 +1,111 @@
+﻿---
+// Section 1 — Navbar (static)
+const navLinks = [
+  { label: "Program", href: "#program-plans" },
+  { label: "Menu", href: "#sample-menu" },
+  { label: "Harga", href: "#subscription-plans" },
+  { label: "Corporate", href: "#corporate-meal-plan" },
+  { label: "Blog", href: "#" },
+];
+---
+
+<header id="navbar" class="sticky top-0 z-50 bg-white transition-shadow duration-300">
+  <div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
+        style="background-color: #3ecf8e; color: #0e0f0c;">N</span>
+      <span class="text-lg font-bold tracking-tight" style="color: #059669;">NutriBox</span>
+    </a>
+
+    <!-- Nav links — desktop -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium transition-colors duration-150 hover:opacity-80"
+          style="color: #222222;"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-3">
+      <a
+        href="#subscribe-form"
+        class="hidden md:inline-flex items-center px-5 h-10 text-sm font-semibold transition-transform duration-150 active:scale-95"
+        style="background-color: #3ecf8e; color: #0e0f0c; border-radius: 50px;"
+      >
+        Mulai Meal Plan
+      </a>
+
+      <!-- Hamburger — mobile only -->
+      <button
+        id="nav-toggle"
+        class="md:hidden flex flex-col gap-1.5 p-2"
+        aria-label="Buka menu"
+        aria-expanded="false"
+      >
+        <span class="hamburger-line block w-5 h-0.5 transition-all duration-300" style="background-color: #222222;"></span>
+        <span class="hamburger-line block w-5 h-0.5 transition-all duration-300" style="background-color: #222222;"></span>
+        <span class="hamburger-line block w-5 h-0.5 transition-all duration-300" style="background-color: #222222;"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t px-6 py-4 flex-col gap-4"
+    style="background-color: #ffffff; border-color: #dddddd;"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="text-sm font-medium py-1"
+        style="color: #222222;"
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="#subscribe-form"
+      class="inline-flex items-center justify-center px-5 h-10 text-sm font-semibold mt-2"
+      style="background-color: #3ecf8e; color: #0e0f0c; border-radius: 50px;"
+    >
+      Mulai Meal Plan
+    </a>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById("navbar")!;
+  const toggle = document.getElementById("nav-toggle")!;
+  const menu = document.getElementById("mobile-menu")!;
+
+  // Scroll shadow
+  window.addEventListener("scroll", () => {
+    navbar.style.boxShadow = window.scrollY > 8
+      ? "0 1px 12px rgba(0,0,0,0.08)"
+      : "none";
+  }, { passive: true });
+
+  // Mobile toggle
+  toggle.addEventListener("click", () => {
+    const open = menu.classList.toggle("hidden");
+    menu.classList.toggle("flex", !open);
+    toggle.setAttribute("aria-expanded", String(!open));
+  });
+
+  // Close on link click
+  menu.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>

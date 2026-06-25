@@ -1,0 +1,165 @@
+﻿---
+// Section 15 — Footer (static)
+import { IconBrandInstagram, IconBrandTiktok, IconBrandWhatsapp, IconMapPin, IconMail, IconClock } from "@tabler/icons-react";
+
+const navLinks = [
+  { label: "Program", href: "#program-plans" },
+  { label: "Menu", href: "#sample-menu" },
+  { label: "Harga", href: "#subscription-plans" },
+  { label: "Corporate", href: "#corporate-meal-plan" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const programs = [
+  "Weight Loss",
+  "High Protein",
+  "Diabetic Friendly",
+  "Healthy Heart",
+  "Post-Partum Recovery",
+];
+
+const socials = [
+  { label: "Instagram", href: "#", Icon: IconBrandInstagram },
+  { label: "TikTok", href: "#", Icon: IconBrandTiktok },
+  { label: "WhatsApp", href: "https://wa.me/", Icon: IconBrandWhatsapp },
+];
+
+const certs = ["HACCP Certified", "Halal", "BPOM", "Registered Dietitian"];
+---
+
+<footer style="background-color: #134e4a;">
+  <!-- Main footer content -->
+  <div class="max-w-[1280px] mx-auto px-6 pt-16 pb-10">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <span
+            class="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold"
+            style="background-color: #3ecf8e; color: #0e0f0c;"
+          >N</span>
+          <span class="text-lg font-bold text-white">NutriBox</span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: rgba(255,255,255,0.6);">
+          Meal prep bergizi dikirim harian. Dirancang ahli gizi, bebas pengawet, tinggal buka langsung makan.
+        </p>
+        <div class="flex gap-3">
+          {socials.map((s) => (
+            <a
+              href={s.href}
+              aria-label={s.label}
+              class="w-9 h-9 rounded-full flex items-center justify-center transition-opacity hover:opacity-80"
+              style="background-color: rgba(255,255,255,0.1);"
+            >
+              <s.Icon size={18} stroke={1.5} color="rgba(255,255,255,0.8)" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color: #6ee7b7;">
+          Navigasi
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          {navLinks.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-sm transition-opacity hover:opacity-80"
+                style="color: rgba(255,255,255,0.7);"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Programs -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color: #6ee7b7;">
+          Program
+        </p>
+        <ul class="flex flex-col gap-2.5">
+          {programs.map((p) => (
+            <li>
+              <a
+                href="#program-plans"
+                class="text-sm transition-opacity hover:opacity-80"
+                style="color: rgba(255,255,255,0.7);"
+              >
+                {p}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color: #6ee7b7;">
+          Kontak
+        </p>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-start gap-2.5">
+            <IconMapPin size={16} stroke={1.5} color="rgba(255,255,255,0.5)" class="shrink-0 mt-0.5" />
+            <span class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.7);">
+              Central Kitchen NutriBox<br />Padang, Sumatera Barat
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <IconBrandWhatsapp size={16} stroke={1.5} color="rgba(255,255,255,0.5)" class="shrink-0 mt-0.5" />
+            <a
+              href="https://wa.me/"
+              class="text-sm hover:underline"
+              style="color: rgba(255,255,255,0.7);"
+            >
+              08xx-xxxx-xxxx
+            </a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <IconMail size={16} stroke={1.5} color="rgba(255,255,255,0.5)" class="shrink-0 mt-0.5" />
+            <a
+              href="mailto:hello@nutribox.id"
+              class="text-sm hover:underline"
+              style="color: rgba(255,255,255,0.7);"
+            >
+              hello@nutribox.id
+            </a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <IconClock size={16} stroke={1.5} color="rgba(255,255,255,0.5)" class="shrink-0 mt-0.5" />
+            <span class="text-sm" style="color: rgba(255,255,255,0.7);">
+              Senin–Sabtu, 08.00–21.00
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cert badges -->
+    <div class="flex flex-wrap gap-2 py-6" style="border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+      {certs.map((c) => (
+        <span
+          class="text-xs font-semibold px-3 py-1.5 rounded-full"
+          style="background-color: rgba(110,231,183,0.1); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.2);"
+        >
+          ✓ {c}
+        </span>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6">
+      <p class="text-xs" style="color: rgba(255,255,255,0.4);">
+        © 2025 NutriBox. All rights reserved.
+      </p>
+      <p class="text-xs" style="color: rgba(255,255,255,0.4);">
+        Makan sehat itu gampang. Tinggal buka, langsung makan.
+      </p>
+    </div>
+  </div>
+</footer>

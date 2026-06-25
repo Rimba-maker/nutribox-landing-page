@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Static sections (.astro)
+import Navbar from "../components/static/Navbar.astro";
+import HowItWorks from "../components/static/HowItWorks.astro";
+import DeliveryCoverage from "../components/static/DeliveryCoverage.astro";
+import CorporateMealPlan from "../components/static/CorporateMealPlan.astro";
+import Footer from "../components/static/Footer.astro";
+
+// React islands
+import Hero from "../components/islands/Hero";
+import WhyNutriBox from "../components/islands/WhyNutriBox";
+import ProgramPlans from "../components/islands/ProgramPlans";
+import SampleMenu from "../components/islands/SampleMenu";
+import NutritionalTransparency from "../components/islands/NutritionalTransparency";
+import SubscriptionPlans from "../components/islands/SubscriptionPlans";
+import OurKitchen from "../components/islands/OurKitchen";
+import Testimonials from "../components/islands/Testimonials";
+import FAQ from "../components/islands/FAQ";
+import SubscribeForm from "../components/islands/SubscribeForm";
+---
+
+<Layout>
+  <!-- 1. Navbar — static -->
+  <Navbar />
+
+  <!-- 2. Hero — client:load -->
+  <Hero client:load />
+
+  <!-- 3. Why NutriBox — client:visible -->
+  <WhyNutriBox client:visible />
+
+  <!-- 4. Program Plans — client:visible -->
+  <ProgramPlans client:visible />
+
+  <!-- 5. Sample Menu — client:visible -->
+  <SampleMenu client:visible />
+
+  <!-- 6. Nutritional Transparency — client:visible -->
+  <NutritionalTransparency client:visible />
+
+  <!-- 7. How It Works — static -->
+  <HowItWorks />
+
+  <!-- 8. Subscription Plans — client:visible -->
+  <SubscriptionPlans client:visible />
+
+  <!-- 9. Our Kitchen — client:visible -->
+  <OurKitchen client:visible />
+
+  <!-- 10. Delivery Coverage — static -->
+  <DeliveryCoverage />
+
+  <!-- 11. Testimonials — client:visible -->
+  <Testimonials client:visible />
+
+  <!-- 12. Corporate Meal Plan — static -->
+  <CorporateMealPlan />
+
+  <!-- 13. FAQ — client:visible -->
+  <FAQ client:visible />
+
+  <!-- 14. Subscribe Form — client:idle -->
+  <SubscribeForm client:idle />
+
+  <!-- 15. Footer — static -->
+  <Footer />
+</Layout>

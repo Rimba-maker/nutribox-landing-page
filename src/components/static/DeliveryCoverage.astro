@@ -1,0 +1,129 @@
+﻿---
+// Section 10 — Delivery Coverage (static)
+const areas = [
+  { label: "Padang & Koto Tangah", note: "Free delivery", free: true },
+  { label: "Pauh, Lubuk Begalung, Nanggalo", note: "Free delivery", free: true },
+  { label: "Kuranji, Padang Utara", note: "Free delivery", free: true },
+  { label: "Padang Pariaman (area tertentu)", note: "+Rp 15k", free: false },
+  { label: "Luar area", note: "Hubungi kami", free: null },
+];
+
+const slots = [
+  {
+    icon: "🌅",
+    time: "06.30 – 07.30",
+    label: "Slot Pagi",
+    desc: "Sarapan + bekal kantor sudah siap sebelum berangkat kerja.",
+  },
+  {
+    icon: "🌞",
+    time: "11.00 – 12.00",
+    label: "Slot Siang",
+    desc: "Makan siang kantor dikirim tepat waktu sebelum jam makan.",
+  },
+  {
+    icon: "📦",
+    time: "Pagi (semua)",
+    label: "All-at-once",
+    desc: "Semua makanan sehari dikirim sekaligus di pagi hari. Simpan di kulkas.",
+  },
+];
+---
+
+<section id="delivery-coverage" style="background-color: #f2f0eb;" class="py-20 md:py-28">
+  <div class="max-w-[1280px] mx-auto px-6">
+
+    <!-- Header -->
+    <div class="max-w-2xl mb-14">
+      <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #3ecf8e;">
+        Area Delivery
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4" style="color: #222222;">
+        Delivery Ke Mana?
+      </h2>
+      <p class="text-base leading-relaxed" style="color: #717171;">
+        Kami cover area Padang dan sekitarnya. Cek area kamu di bawah.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+
+      <!-- Area list -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide mb-4" style="color: #717171;">
+          Coverage Area
+        </p>
+        <ul class="flex flex-col gap-3">
+          {areas.map((area) => (
+            <li
+              class="flex items-center justify-between px-5 py-4 rounded-xl"
+              style="background-color: #ffffff; border: 1px solid #ebebeb;"
+            >
+              <div class="flex items-center gap-3">
+                <span class="text-base">
+                  {area.free === true ? "✅" : area.free === false ? "🟡" : "📞"}
+                </span>
+                <span class="text-sm font-medium" style="color: #222;">{area.label}</span>
+              </div>
+              <span
+                class="text-xs font-semibold px-3 py-1 rounded-full"
+                style={`background-color: ${area.free === true ? "rgba(62,207,142,0.08)" : area.free === false ? "rgba(249,115,22,0.08)" : "rgba(113,113,113,0.08)"}; color: ${area.free === true ? "#059669" : area.free === false ? "#c2410c" : "#717171"};`}
+              >
+                {area.note}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="text-xs mt-4" style="color: #717171;">
+          * Area di luar list? <a href="https://wa.me/" class="underline" style="color: #3ecf8e;">Chat kami</a> — kami usahakan cover.
+        </p>
+      </div>
+
+      <!-- Delivery slots -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide mb-4" style="color: #717171;">
+          Jadwal Pengiriman
+        </p>
+        <div class="flex flex-col gap-4">
+          {slots.map((slot) => (
+            <div
+              class="flex gap-4 items-start p-5 rounded-xl"
+              style="background-color: #ffffff; border: 1px solid #ebebeb;"
+            >
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0"
+                style="background-color: rgba(62,207,142,0.08);"
+              >
+                {slot.icon}
+              </div>
+              <div>
+                <div class="flex items-center gap-3 mb-1">
+                  <span class="font-bold text-sm" style="color: #222;">{slot.label}</span>
+                  <span
+                    class="text-xs font-semibold px-2.5 py-0.5 rounded-full"
+                    style="background-color: #134e4a; color: #6ee7b7;"
+                  >
+                    {slot.time}
+                  </span>
+                </div>
+                <p class="text-sm leading-relaxed" style="color: #717171;">{slot.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Note -->
+        <div
+          class="mt-5 flex gap-3 items-start p-4 rounded-xl"
+          style="background-color: rgba(62,207,142,0.06); border: 1px solid rgba(62,207,142,0.15);"
+        >
+          <span class="text-lg shrink-0">💡</span>
+          <p class="text-sm leading-relaxed" style="color: #444;">
+            Slot delivery dipilih saat subscribe. Bisa diganti dengan notifikasi minimal <strong>H-2</strong> sebelum jadwal pengiriman.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

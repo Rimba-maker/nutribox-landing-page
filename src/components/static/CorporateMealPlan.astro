@@ -1,0 +1,164 @@
+﻿---
+// Section 12 — Corporate Meal Plan (static)
+const packages = [
+  {
+    icon: "🏢",
+    name: "Starter",
+    capacity: "10–30 orang",
+    price: "Rp 55k–75k / orang / hari",
+    perks: [
+      "Lunch box per hari (Senin–Jumat)",
+      "Menu rotasi mingguan",
+      "Invoice bulanan, bisa di-reimburse",
+      "Min. 10 orang",
+    ],
+    featured: false,
+  },
+  {
+    icon: "🏢",
+    name: "Standard",
+    capacity: "30–100 orang",
+    price: "Rp 65k–90k / orang / hari",
+    perks: [
+      "Lunch + snack box",
+      "Konsultasi ahli gizi untuk tim (quarterly)",
+      "Branded packaging nama perusahaan",
+    ],
+    featured: true,
+  },
+  {
+    icon: "🏢",
+    name: "Premium",
+    capacity: "100+ orang",
+    price: "Custom pricing",
+    perks: [
+      "Full meal plan (sarapan + lunch + snack)",
+      "Dedicated account manager",
+      "Laporan nutrisi bulanan untuk tim",
+      "Custom menu sesuai preferensi karyawan",
+    ],
+    featured: false,
+  },
+];
+---
+
+<section
+  id="corporate-meal-plan"
+  class="py-20 md:py-28"
+  style="background-color: #134e4a;"
+>
+  <div class="max-w-[1280px] mx-auto px-6">
+
+    <!-- Header -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-14">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color: #6ee7b7;">
+          Corporate
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4 text-white">
+          Makan Siang Sehat
+          <br />
+          Untuk Tim Kantormu.
+        </h2>
+        <p class="text-base leading-relaxed" style="color: rgba(255,255,255,0.7);">
+          Karyawan sehat = produktivitas naik. Corporate meal plan NutriBox bisa jadi salah satu wellbeing benefit terbaik.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        {[
+          { stat: "50+", label: "Perusahaan partner" },
+          { stat: "15k+", label: "Box dikirim / bulan" },
+          { stat: "100%", label: "On-time delivery" },
+        ].map((item) => (
+          <div
+            class="flex-1 min-w-[120px] text-center p-5 rounded-xl"
+            style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+          >
+            <p class="text-3xl font-black" style="color: #6ee7b7;">{item.stat}</p>
+            <p class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Packages -->
+    <div class="grid md:grid-cols-3 gap-5 mb-10">
+      {packages.map((pkg) => (
+        <div
+          class="flex flex-col gap-4 p-6 rounded-[14px]"
+          style={`background-color: ${pkg.featured ? "#ffffff" : "rgba(255,255,255,0.06)"}; border: ${pkg.featured ? "2px solid #6ee7b7" : "1px solid rgba(255,255,255,0.12)"};`}
+        >
+          {pkg.featured && (
+            <span
+              class="self-start text-xs font-bold px-3 py-1 rounded-full"
+              style="background-color: #6ee7b7; color: #134e4a;"
+            >
+              Paling Populer
+            </span>
+          )}
+
+          <div>
+            <h3
+              class="text-lg font-bold"
+              style={`color: ${pkg.featured ? "#222" : "#fff"};`}
+            >
+              {pkg.icon} {pkg.name}
+            </h3>
+            <p
+              class="text-sm mt-0.5"
+              style={`color: ${pkg.featured ? "#717171" : "rgba(255,255,255,0.6)"};`}
+            >
+              {pkg.capacity}
+            </p>
+          </div>
+
+          <p
+            class="text-xl font-black"
+            style={`color: ${pkg.featured ? "#059669" : "#6ee7b7"};`}
+          >
+            {pkg.price}
+          </p>
+
+          <div class="h-px" style={`background-color: ${pkg.featured ? "#ebebeb" : "rgba(255,255,255,0.1)"};`} />
+
+          <ul class="flex flex-col gap-2.5 flex-1">
+            {pkg.perks.map((perk) => (
+              <li
+                class="flex items-start gap-2 text-sm"
+                style={`color: ${pkg.featured ? "#444" : "rgba(255,255,255,0.8)"};`}
+              >
+                <span style={`color: ${pkg.featured ? "#3ecf8e" : "#6ee7b7"}; margin-top: 1px;`} class="shrink-0">✓</span>
+                {perk}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://wa.me/"
+            class="mt-2 inline-flex items-center justify-center h-10 text-sm font-semibold rounded-full transition-opacity hover:opacity-90"
+            style={`background-color: ${pkg.featured ? "#3ecf8e" : "rgba(255,255,255,0.12)"}; color: ${pkg.featured ? "#fff" : "#fff"};`}
+          >
+            Hubungi Sales
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom note -->
+    <div
+      class="flex flex-col sm:flex-row items-center justify-between gap-5 px-6 py-5 rounded-2xl"
+      style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+    >
+      <p class="text-sm" style="color: rgba(255,255,255,0.75);">
+        Butuh proposal & demo? Tim sales kami siap presentasi ke HR atau manajemen perusahaan kamu.
+      </p>
+      <a
+        href="https://wa.me/"
+        class="shrink-0 inline-flex items-center gap-2 px-6 h-11 text-sm font-semibold rounded-full"
+        style="background-color: #3ecf8e; color: #ffffff;"
+      >
+        📋 Minta Proposal
+      </a>
+    </div>
+  </div>
+</section>
